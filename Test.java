@@ -1,5 +1,7 @@
 import java.util.Random;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 public class Test {
     public static void main( String[] args) {
         System.out.println("Hello-JAVA-HOME-とかを自動でして貰ったよ！！後はファイルを.javaで保存してからに気付いて動いたよ！！！「Visual Studio Code Installer for Java」ソフト使ったよ！！！楽だった、絶望だった環境変数を今だに操作・・・");
@@ -43,5 +45,37 @@ public class Test {
             default:
                 System.out.println("ジェットゴー");
         }
+        test();
+    }
+    private static void test(){
+        //y=x^3-2;
+        double num3=0.002,x=1,x1=1,num4=0.2;
+        int bool1=0,bool2=0;
+        Random random = new Random();
+        int randomValue = random.nextInt(999999999);
+        x = randomValue;
+        while((bool1 == 0) || (bool2 == 0)){
+            //ax^3+bx^2+cx+d;
+            num4 = x*x*x+x*x+x+1;
+            x1 = x / 2;
+            num3 = x1*x1*x1+x1*x1+x1+3;
+            if(Math.abs(x - x1)<0.001){
+                bool1 = 1;
+                break;
+            }
+            if(Math.abs(num3)<0.001){
+                bool2 = 1;
+            }
+            if(x < 0.0000001){
+                x = random.nextInt(999999999);
+            }else{
+                x = x1;
+            }
+
+        }
+        System.out.println("X=");
+        System.out.println(x);
+        System.out.println("Y=この値で打ち止め");
+        System.out.println(num3);
     }
 }
