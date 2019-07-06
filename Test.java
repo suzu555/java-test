@@ -7,6 +7,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
+import com.sun.jndi.url.corbaname.corbanameURLContextFactory;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
 public class Test {
@@ -63,7 +64,14 @@ public class Test {
         // 描画のサンプル
         g.setColor(Color.BLACK);
         while(true){
-            g.fillOval(50, 50, 100, 100);
+            for (int i = 1; i <= 1000; i++){
+                //y=ax^2+bx+c
+                //画面端だから、1000あるとして最大を1000にするから
+                //(x-1000)(x-500)(x-10)=
+                //double i2 = ;
+                g.fillOval(10*i, 1*(i*i+2*i+1), 100, 100);
+                g.fillOval(1*(i*i+2*i+1),10*i, 100, 100);
+            }
         }
     }
     private static void test(){
