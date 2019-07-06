@@ -59,6 +59,10 @@ public class Test {
         SwingTest test2 = new SwingTest("SwingTest");
         test2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         test2.setVisible(true);
+        Graphics g = test2.getGraphics();
+        // 描画のサンプル
+        g.setColor(Color.BLACK);
+        g.fillOval(50, 50, 100, 100);
 
     }
     private static void test(){
@@ -115,7 +119,10 @@ class SwingTest extends JFrame {
     public SwingTest(String title) {
         setTitle(title);
         setBounds( 10, 10, 300, 200);
+        //setResizable(false);
+        //setAlwaysOnTop(true);
        addWindowListener(new myListener());
+       addComponentListener(new ComponentAdapter_JFrame());
     }
 }
 class myListener extends WindowAdapter{
@@ -124,17 +131,26 @@ class myListener extends WindowAdapter{
     }
     public void windowActivated(WindowEvent e){
         Graphics g = e.getComponent().getGraphics();
-        // 描画のサンプルここで出来た！！！３０秒ほど待つ
+        // 描画のサンプル
         g.setColor(Color.RED);
         g.fillOval(50, 50, 100, 100);
-
-
     }
     public void windowOpened(WindowEvent e){
-
+        Graphics g = e.getComponent().getGraphics();
+        // 描画のサンプル
+        g.setColor(Color.BLACK);
+        g.fillOval(50, 50, 100, 100);
     }
     public void windowStateChanged(WindowEvent e){
+        Graphics g = e.getComponent().getGraphics();
+        // 描画のサンプル
+        g.setColor(Color.BLUE);
+        g.fillOval(50, 50, 100, 100);
 
     }
-    
 }
+class ComponentAdapter_JFrame extends ComponentAdapter{
+    public void componentResized(ComponentEvent e) {              //フレームのサイズが変更されたとき
+        this.repaint();                                      //フレームを再描画する
+    }
+  }
