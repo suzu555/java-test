@@ -62,8 +62,9 @@ public class Test {
         Graphics g = test2.getGraphics();
         // 描画のサンプル
         g.setColor(Color.BLACK);
-        g.fillOval(50, 50, 100, 100);
-
+        while(true){
+            g.fillOval(50, 50, 100, 100);
+        }
     }
     private static void test(){
         //y=x^3-2;
