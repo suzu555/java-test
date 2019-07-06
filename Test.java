@@ -1,4 +1,9 @@
 import java.util.Random;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
@@ -46,6 +51,11 @@ public class Test {
                 System.out.println("ジェットゴー");
         }
         test();
+        MyFrame f = new MyFrame();
+        f.setVisible(true);
+        SwingTest test2 = new SwingTest("SwingTest");
+        test2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        test2.setVisible(true);
     }
     private static void test(){
         //y=x^3-2;
@@ -56,9 +66,9 @@ public class Test {
         x = randomValue;
         while((bool1 == 0) || (bool2 == 0)){
             //ax^3+bx^2+cx+d;
-            num4 = x*x*x+x*x+x+1;
+            num4 = x*x*x+x*x+x-91;
             x1 = x / 2;
-            num3 = x1*x1*x1+x1*x1+x1+3;
+            num3 = x1*x1*x1+x1*x1+x1-91;
             if(Math.abs(x - x1)<0.001){
                 bool1 = 1;
                 break;
@@ -79,3 +89,30 @@ public class Test {
         System.out.println(num3);
     }
 }
+//ウインドウの登録など
+class MyFrame extends Frame {
+    public MyFrame() {
+       setSize(300, 200);
+       setTitle("awttest");
+       addWindowListener(new MyWindowAdapter());
+    }
+}
+//ウィンドウを閉じる
+class MyWindowAdapter extends WindowAdapter {
+    public void windowClosing(WindowEvent e) {
+       System.exit(0);
+    }
+}
+//ウインドウの登録など
+class SwingTest extends JFrame {
+    public SwingTest(String title) {
+        setTitle(title);
+        setBounds( 10, 10, 300, 200);
+       addWindowListener(new myListener());
+    }
+}
+class myListener extends WindowAdapter{
+    public void windowClosing(WindowEvent e) {
+      System.out.println("Window closing");
+    }
+  }
