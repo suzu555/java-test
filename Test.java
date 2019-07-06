@@ -94,6 +94,7 @@ class MyFrame extends Frame {
     public MyFrame() {
        setSize(300, 200);
        setTitle("awttest");
+       setBackground(Color.GRAY);
        addWindowListener(new MyWindowAdapter());
     }
 }
