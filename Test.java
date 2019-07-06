@@ -1,9 +1,11 @@
 import java.util.Random;
+import java.applet.Applet;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Graphics;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
@@ -53,9 +55,11 @@ public class Test {
         test();
         MyFrame f = new MyFrame();
         f.setVisible(true);
+
         SwingTest test2 = new SwingTest("SwingTest");
         test2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         test2.setVisible(true);
+
     }
     private static void test(){
         //y=x^3-2;
@@ -101,11 +105,13 @@ class MyFrame extends Frame {
 //ウィンドウを閉じる
 class MyWindowAdapter extends WindowAdapter {
     public void windowClosing(WindowEvent e) {
-       System.exit(0);
+       //System.exit(0);
     }
 }
+
 //ウインドウの登録など
 class SwingTest extends JFrame {
+
     public SwingTest(String title) {
         setTitle(title);
         setBounds( 10, 10, 300, 200);
@@ -116,4 +122,19 @@ class myListener extends WindowAdapter{
     public void windowClosing(WindowEvent e) {
       System.out.println("Window closing");
     }
-  }
+    public void windowActivated(WindowEvent e){
+        Graphics g = e.getComponent().getGraphics();
+        // 描画のサンプルここで出来た！！！３０秒ほど待つ
+        g.setColor(Color.RED);
+        g.fillOval(50, 50, 100, 100);
+
+
+    }
+    public void windowOpened(WindowEvent e){
+
+    }
+    public void windowStateChanged(WindowEvent e){
+
+    }
+    
+}
