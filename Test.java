@@ -134,6 +134,7 @@ class SwingTest extends JFrame {
        addComponentListener(new ComponentAdapter_JFrame());
     }
 }
+//ウィンドウを閉じる
 class myListener extends WindowAdapter{
     public void windowClosing(WindowEvent e) {
       System.out.println("Window closing");
