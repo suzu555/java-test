@@ -25,18 +25,40 @@ import java.io.InputStream;
 
 
 public class Kwkwkw {
-    public static void main( String[] args) throws IOException {
-
-        Properties properties = new Properties();
-        //プロパティファイルのパスを指定する
-        InputStream istream = new FileInputStream("Kwkwkw.properties");
-        properties.load(istream);
-        System.out.println(properties.getProperty("id"));
-        System.out.println(properties.getProperty("pass"));
-
+    public static void main( String[] args) throws IOException  {
         SwingTest test2 = new SwingTest("SwingTest");
         test2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         test2.setVisible(true);
+    }
+}
+//ウインドウの登録など
+class SwingTest extends JFrame {
+
+    public SwingTest(String title) throws IOException {
+        setTitle(title);
+        setBounds( 100, 100, 600, 450);
+        JPanel p = new JPanel();
+        p.setLayout(null);
+        Container contentPane = getContentPane();
+        contentPane.add(p);
+
+        JButton button2 = new JButton("確認");
+        button2.addActionListener(new myListener2());
+        button2.setBounds(0, 0, 60, 30);
+        JButton button3 = new JButton("キャンセル");
+        button3.addActionListener(new myListener3());
+        button3.setBounds(50, 0, 100, 30);
+        p.add(button2);
+        p.add(button3);
+        //setResizable(false);
+        //setAlwaysOnTop(true);
+        JTextArea area1 = new JTextArea("設定の書き込みを見る物\n");
+        area1.setBackground(Color.WHITE);
+        JScrollPane scrollpane1 = new JScrollPane(area1);
+        scrollpane1.setBounds(0, 30, 582, 380);
+        p.add(scrollpane1);
+
+//制御
             // FileWriterクラスのオブジェクトを生成する
             File file = new File("Kwkwkw.ini");
             FileWriter file2 = new FileWriter(file, true);
@@ -44,43 +66,69 @@ public class Kwkwkw {
             BufferedWriter buff = new BufferedWriter(file2);
             PrintWriter pw = new PrintWriter(buff);
             //ファイルに追記する
-            String str2 = file.getAbsolutePath();
+            String str2 = file.getParent();
             pw.println("path="+str2);
-            pw.println("abc=");
+            pw.println("absssc=");
             //ファイルパスを取得する
             String str = file.getAbsolutePath();
-            System.out.println("pass : " + str);
-            //ファイルを閉じる
-            pw.close();
+            System.out.println("pass : " + str.replace("Kwkwkw.ini", "") + str );
 
 
+        area1.append("abc=" + str + "\n");
+        area1.append("cba=" + str + "\n");
 
-    }
-}
-//ウインドウの登録など
-class SwingTest extends JFrame {
+        Properties properties = new Properties();
+        //プロパティファイルのパスを指定する
+        InputStream istream = new FileInputStream(file);
+        properties.load(istream);
+        System.out.println(properties.getProperty("abc"));
+        System.out.println(properties.getProperty("cba"));
+        //ファイルを閉じる
+        //pw.close();
 
-    public SwingTest(String title) {
-        setTitle(title);
-        setBounds( 100, 100, 600, 450);
-        //setResizable(false);
-        //setAlwaysOnTop(true);
+
+//気分で設置
        addWindowListener(new myListener());
     }
 }
 //ウィンドウを閉じる
 class myListener extends WindowAdapter{
-    public void windowClosing(WindowEvent e) {
-      System.out.println("Window closing");
-    }
     public void windowActivated(WindowEvent e){
         Graphics g = e.getComponent().getGraphics();
         // 描画のサンプル
         g.setColor(Color.RED);
         g.fillOval(50, 50, 100, 100);
     }
-    public void windowOpened(WindowEvent e){
+    public void windowClosed(WindowEvent e) {
     }
-    public void windowStateChanged(WindowEvent e){
+    public void windowClosing(WindowEvent e) {
+        System.out.println("Window closing");
+    }
+    public void windowDeactivated(WindowEvent e) {
+    }
+    public void windowDeiconified(WindowEvent e) {
+    }
+    public void windowGainedFocus(WindowEvent e) {
+    }
+    public void windowIconified(WindowEvent e) {
+    }
+    public void windowLostFocus(WindowEvent e) {
+    }
+    public void windowOpened(WindowEvent e) {
+    }
+    public void windowStateChanged(WindowEvent e) {
+    }
+}
+class myListener2 implements ActionListener{
+    public void actionPerformed(ActionEvent e){
+      /* ボタン1の処理したい内容をここに記述する */
+      System.out.println("abc=");
+    }
+}
+class myListener3 implements ActionListener{
+    public void actionPerformed(ActionEvent e){
+        /* ボタン2の処理したい内容をここに記述する */
+        System.out.println("終了するよ！");
+        System.exit(0);
     }
 }
