@@ -39,21 +39,21 @@ public class Kwkwkw {
         }
         */
             // FileWriterクラスのオブジェクトを生成する
-            File file = new File("abc\\java.txt");
+            File file = new File("Kwkwkw.ini");
             FileWriter file2 = new FileWriter(file, true);
             // PrintWriterクラスのオブジェクトを生成する
             BufferedWriter buff = new BufferedWriter(file2);
             PrintWriter pw = new PrintWriter(buff);
             //ファイルに追記する
-            pw.println("pineapple");
-            pw.println("banana");
+            String str2 = file.getAbsolutePath();
+            pw.println("path:"+str2);
+            pw.println("abc:");
             //ファイルパスを取得する
             String str = file.getAbsolutePath();
             System.out.println("pass : " + str);
             //ファイルを閉じる
             pw.close();
-            buff.close();
-            file2.close();
+
 
 
     }
@@ -63,7 +63,7 @@ class SwingTest extends JFrame {
 
     public SwingTest(String title) {
         setTitle(title);
-        setBounds( 10, 10, 300, 200);
+        setBounds( 100, 100, 600, 450);
         //setResizable(false);
         //setAlwaysOnTop(true);
        addWindowListener(new myListener());
