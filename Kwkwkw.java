@@ -17,27 +17,26 @@ import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.ResourceBundle;
+import java.util.Properties;
+import java.io.FileInputStream;
+import java.io.InputStream;
+
+
 
 public class Kwkwkw {
-    public static void main( String[] args) throws IOException{
+    public static void main( String[] args) throws IOException {
+
+        Properties properties = new Properties();
+        //プロパティファイルのパスを指定する
+        InputStream istream = new FileInputStream("Kwkwkw.properties");
+        properties.load(istream);
+        System.out.println(properties.getProperty("id"));
+        System.out.println(properties.getProperty("pass"));
+
         SwingTest test2 = new SwingTest("SwingTest");
         test2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         test2.setVisible(true);
-        Graphics g = test2.getGraphics();
-        // 描画のサンプル
-        g.setColor(Color.BLACK);
-        /*
-        while(false){
-            for (int i = 1; i <= 1000; i++){
-                //y=ax^2+bx+c
-                //画面端だから、1000あるとして最大を1000にするから
-                //(x-1000)(x-500)(x-10)=
-                //double i2 = ;
-                g.fillOval(10*i, 1*(i*i+2*i+1), 100, 100);
-                g.fillOval(1*(i*i+2*i+1),10*i, 100, 100);
-            }
-        }
-        */
             // FileWriterクラスのオブジェクトを生成する
             File file = new File("Kwkwkw.ini");
             FileWriter file2 = new FileWriter(file, true);
@@ -46,8 +45,8 @@ public class Kwkwkw {
             PrintWriter pw = new PrintWriter(buff);
             //ファイルに追記する
             String str2 = file.getAbsolutePath();
-            pw.println("path:"+str2);
-            pw.println("abc:");
+            pw.println("path="+str2);
+            pw.println("abc=");
             //ファイルパスを取得する
             String str = file.getAbsolutePath();
             System.out.println("pass : " + str);
