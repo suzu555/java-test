@@ -25,14 +25,17 @@ import java.io.InputStream;
 
 
 public class Kwkwkw {
-    public static void main( String[] args) throws IOException  {
+    public static void main( String[] args) throws IOException {
         SwingTest test2 = new SwingTest("SwingTest");
         test2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         test2.setVisible(true);
+        Settei setteistr = new Settei(test2.area2);
+        setteistr.test();
     }
 }
 //ウインドウの登録など
 class SwingTest extends JFrame {
+    JTextArea area2;
     static final long serialVersionUID = 0L;
     public SwingTest(String title)  throws IOException {
 //ウインドウの設定
@@ -54,12 +57,11 @@ class SwingTest extends JFrame {
         //setResizable(false);
         //setAlwaysOnTop(true);
         JTextArea area1 = new JTextArea("設定の書き込みを見る物\n");
+        area2 = area1;
         area1.setBackground(Color.WHITE);
         JScrollPane scrollpane1 = new JScrollPane(area1);
         scrollpane1.setBounds(0, 30, 582, 380);
         p.add(scrollpane1);
-        Settei setteistr = new Settei(area1);
-        setteistr.test();
 //気分で設置
        addWindowListener(new myListener());
     }
