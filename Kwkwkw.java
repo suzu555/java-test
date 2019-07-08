@@ -80,15 +80,21 @@ class SwingTest extends JFrame {
         // PrintWriterクラスのオブジェクトを生成する
         BufferedWriter buff = new BufferedWriter(file2);
         PrintWriter pw = new PrintWriter(buff);
-        //ファイルに追記する
-        String str2 = file.getParent();
-        pw.println("path="+str2);
-        pw.println("absssc=");
         //ファイルパスを取得する
         String str = file.getAbsolutePath();
-        System.out.println("pass : " + str.replace("Kwkwkw.ini", "") + str );
-        area1.append("abc=" + str + "\n");
-        area1.append("cba=" + str + "\n");
+        String str2 = str.replace("Kwkwkw.ini", "");
+        System.out.println("pass : " + str2 + str );
+        area1.append("abc=" + str2 + "abc" + "\n");
+        area1.append("cba=" + str2 + "cba" + "\n");
+        //ファイルに追記する
+        pw.println("abc="+str2 + "abc");
+        pw.println("cba="+str2 + "cba");
+
+//ディレクトリの作成
+        File file3 = new File("abc");
+        file3.mkdir();
+        File file4 = new File("cba");
+        file4.mkdir();
         //ファイルを閉じる
         pw.close();
         }
