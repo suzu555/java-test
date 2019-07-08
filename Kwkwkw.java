@@ -33,8 +33,9 @@ public class Kwkwkw {
 }
 //ウインドウの登録など
 class SwingTest extends JFrame {
-
+    static final long serialVersionUID = 0L;
     public SwingTest(String title) throws IOException {
+//ウインドウの設定
         setTitle(title);
         setBounds( 100, 100, 600, 450);
         JPanel p = new JPanel();
@@ -59,33 +60,38 @@ class SwingTest extends JFrame {
         p.add(scrollpane1);
 
 //制御
-            // FileWriterクラスのオブジェクトを生成する
-            File file = new File("Kwkwkw.ini");
-            FileWriter file2 = new FileWriter(file, true);
-            // PrintWriterクラスのオブジェクトを生成する
-            BufferedWriter buff = new BufferedWriter(file2);
-            PrintWriter pw = new PrintWriter(buff);
-            //ファイルに追記する
-            String str2 = file.getParent();
-            pw.println("path="+str2);
-            pw.println("absssc=");
-            //ファイルパスを取得する
-            String str = file.getAbsolutePath();
-            System.out.println("pass : " + str.replace("Kwkwkw.ini", "") + str );
-
-
-        area1.append("abc=" + str + "\n");
-        area1.append("cba=" + str + "\n");
-
+        // FileWriterクラスのオブジェクトを生成する
+        File file = new File("Kwkwkw.ini");
+        if(file.exists()){
+            if(file.isFile()){
         Properties properties = new Properties();
         //プロパティファイルのパスを指定する
         InputStream istream = new FileInputStream(file);
         properties.load(istream);
         System.out.println(properties.getProperty("abc"));
         System.out.println(properties.getProperty("cba"));
+            }else{
+                System.out.println("設定ファイルがディレクトリなんで、終了するよ！");
+                System.exit(0);
+            }
+        }else{
+//ファイルが存在しないんで、設定ファイルを作成
+        FileWriter file2 = new FileWriter(file, true);
+        // PrintWriterクラスのオブジェクトを生成する
+        BufferedWriter buff = new BufferedWriter(file2);
+        PrintWriter pw = new PrintWriter(buff);
+        //ファイルに追記する
+        String str2 = file.getParent();
+        pw.println("path="+str2);
+        pw.println("absssc=");
+        //ファイルパスを取得する
+        String str = file.getAbsolutePath();
+        System.out.println("pass : " + str.replace("Kwkwkw.ini", "") + str );
+        area1.append("abc=" + str + "\n");
+        area1.append("cba=" + str + "\n");
         //ファイルを閉じる
-        //pw.close();
-
+        pw.close();
+        }
 
 //気分で設置
        addWindowListener(new myListener());
