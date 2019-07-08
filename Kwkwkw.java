@@ -24,10 +24,12 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
+import java.net.Socket;
+import java.net.InetAddress;
+import java.net.ServerSocket;
 
 class Globalaa{
     static JTextArea area3;
-    static JTextArea local55;
     public Globalaa(){
     }
     public void test(){
@@ -38,6 +40,41 @@ public class Kwkwkw {
         SwingTest test2 = new SwingTest("SwingTest");
         test2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         test2.setVisible(true);
+        //サーバー
+        ServerSocket serverSocket = null;
+        Socket socket2 = null;
+        serverSocket = new ServerSocket(8800);
+        System.out.println("EchoServerが起動しました(port="+ serverSocket.getLocalPort() + ")");
+
+
+        //クライアント
+        Socket socket = null;
+        socket = new Socket("localhost", 8800);
+        System.out.println("接続しました"+ socket.getRemoteSocketAddress());
+        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+        BufferedReader keyIn = new BufferedReader(new InputStreamReader(System.in));
+        String input;
+        
+        //サーバー
+        socket2 = serverSocket.accept();
+        System.out.println("接続されました "+ socket2.getRemoteSocketAddress() );
+        BufferedReader in2 = new BufferedReader(new InputStreamReader(socket2.getInputStream()));
+        PrintWriter out2 = new PrintWriter(socket2.getOutputStream(), true);
+        String line2;
+
+        //input = keyIn.readLine();
+        out.println("aaaaaaaaaあああああああああああああqwfqgvwくぇgvgwgw毛毛ggっはwhqhg");
+
+        line2 = in2.readLine();
+        System.out.println("受信: " + line2);
+        out2.println(line2);
+        System.out.println("送信: " + line2);
+
+        String line = in.readLine();
+        System.out.println(line);
+        socket.close();
+        serverSocket.close();
     }
 }
 
@@ -100,17 +137,6 @@ class Settei{
                 }
               
                 br.close();
-        /*
-        Properties properties = new Properties();
-        //プロパティファイルのパスを指定する
-        // ファイルからバイトストリームを作る
-        InputStream fileStream2 = new FileInputStream(file);
-        // 文字列ストリームを作る。文字列エンコードの指定
-        InputStreamReader istream = new InputStreamReader(fileStream2,"utf-8");
-        properties.load(istream);
-        System.out.println(properties.getProperty("abc"));
-        System.out.println(properties.getProperty("cba"));
-        */
             }else{
                 System.out.println("設定ファイルがディレクトリなんで、終了するよ！");
                 System.exit(0);
