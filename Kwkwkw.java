@@ -22,20 +22,27 @@ import java.util.Properties;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
-
-
+class Globalaa{
+    static JTextArea area3;
+    static JTextArea local55;
+    public Globalaa(JTextArea area2){
+        local55 = area2;
+    }
+    public void test(){
+        area3 = local55;
+    }
+}
 public class Kwkwkw {
     public static void main( String[] args) throws IOException {
         SwingTest test2 = new SwingTest("SwingTest");
         test2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         test2.setVisible(true);
-        Settei setteistr = new Settei(test2.area2);
-        setteistr.test();
     }
 }
+
 //ウインドウの登録など
 class SwingTest extends JFrame {
-    JTextArea area2;
+    static JTextArea area2;
     static final long serialVersionUID = 0L;
     public SwingTest(String title)  throws IOException {
 //ウインドウの設定
@@ -57,7 +64,8 @@ class SwingTest extends JFrame {
         //setResizable(false);
         //setAlwaysOnTop(true);
         JTextArea area1 = new JTextArea("設定の書き込みを見る物\n");
-        area2 = area1;
+        Globalaa test1 = new Globalaa(area1);
+        test1.test();
         area1.setBackground(Color.WHITE);
         JScrollPane scrollpane1 = new JScrollPane(area1);
         scrollpane1.setBounds(0, 30, 582, 380);
@@ -141,9 +149,17 @@ class myListener extends WindowAdapter{
     }
 }
 class myListener2 implements ActionListener{
-    public void actionPerformed(ActionEvent e){
+    public void actionPerformed(ActionEvent e) {
       /* ボタン1の処理したい内容をここに記述する */
       System.out.println("abc=");
+      JTextArea area1 =new JTextArea();
+      Globalaa test3 = new Globalaa(area1);
+      try {
+        Settei setteistr = new Settei(test3.area3);
+        setteistr.test();
+      } catch ( IOException c) {
+        System.out.println("アクションリスナーが止められないのなんで？" + c);
+      }
     }
 }
 class myListener3 implements ActionListener{
