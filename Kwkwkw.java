@@ -59,6 +59,7 @@ class SwingTest extends JFrame {
         scrollpane1.setBounds(0, 30, 582, 380);
         p.add(scrollpane1);
         Settei setteistr = new Settei(area1);
+        setteistr.test();
 //気分で設置
        addWindowListener(new myListener());
     }
@@ -105,6 +106,8 @@ class Settei{
         //ファイルを閉じる
         pw.close();
         }
+    }
+    public void test() {        
     }
 }
 //ウィンドウを閉じる
