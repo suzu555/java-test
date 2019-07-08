@@ -34,7 +34,7 @@ public class Kwkwkw {
 //ウインドウの登録など
 class SwingTest extends JFrame {
     static final long serialVersionUID = 0L;
-    public SwingTest(String title) throws IOException {
+    public SwingTest(String title)  throws IOException {
 //ウインドウの設定
         setTitle(title);
         setBounds( 100, 100, 600, 450);
@@ -58,7 +58,14 @@ class SwingTest extends JFrame {
         JScrollPane scrollpane1 = new JScrollPane(area1);
         scrollpane1.setBounds(0, 30, 582, 380);
         p.add(scrollpane1);
+        Settei setteistr = new Settei(area1);
+//気分で設置
+       addWindowListener(new myListener());
+    }
+}
 
+class Settei{
+    public Settei(JTextArea area1) throws IOException{
 //制御
         // FileWriterクラスのオブジェクトを生成する
         File file = new File("Kwkwkw.ini");
@@ -98,9 +105,6 @@ class SwingTest extends JFrame {
         //ファイルを閉じる
         pw.close();
         }
-
-//気分で設置
-       addWindowListener(new myListener());
     }
 }
 //ウィンドウを閉じる
