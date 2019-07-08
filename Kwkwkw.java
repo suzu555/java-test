@@ -25,11 +25,9 @@ import java.io.InputStream;
 class Globalaa{
     static JTextArea area3;
     static JTextArea local55;
-    public Globalaa(JTextArea area2){
-        local55 = area2;
+    public Globalaa(){
     }
     public void test(){
-        area3 = local55;
     }
 }
 public class Kwkwkw {
@@ -64,8 +62,8 @@ class SwingTest extends JFrame {
         //setResizable(false);
         //setAlwaysOnTop(true);
         JTextArea area1 = new JTextArea("設定の書き込みを見る物\n");
-        Globalaa test1 = new Globalaa(area1);
-        test1.test();
+        Globalaa test1 = new Globalaa();
+        test1.area3 = area1;
         area1.setBackground(Color.WHITE);
         JScrollPane scrollpane1 = new JScrollPane(area1);
         scrollpane1.setBounds(0, 30, 582, 380);
@@ -153,7 +151,7 @@ class myListener2 implements ActionListener{
       /* ボタン1の処理したい内容をここに記述する */
       System.out.println("abc=");
       JTextArea area1 =new JTextArea();
-      Globalaa test3 = new Globalaa(area1);
+      Globalaa test3 = new Globalaa();
       try {
         Settei setteistr = new Settei(test3.area3);
         setteistr.test();
