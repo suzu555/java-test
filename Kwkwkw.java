@@ -49,7 +49,8 @@ public class Kwkwkw {
 
         //クライアント
         Socket socket = null;
-        socket = new Socket("localhost", 8800);
+        //socket = new Socket("localhost", 8800);
+        socket = new Socket("192.168.6.50", 80);
         System.out.println("接続しました"+ socket.getRemoteSocketAddress());
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
@@ -57,22 +58,31 @@ public class Kwkwkw {
         String input;
         
         //サーバー
+        /*
         socket2 = serverSocket.accept();
         System.out.println("接続されました "+ socket2.getRemoteSocketAddress() );
         BufferedReader in2 = new BufferedReader(new InputStreamReader(socket2.getInputStream()));
         PrintWriter out2 = new PrintWriter(socket2.getOutputStream(), true);
         String line2;
-
+        */
         //input = keyIn.readLine();
-        out.println("aaaaaaaaaあああああああああああああqwfqgvwくぇgvgwgw毛毛ggっはwhqhg");
-
+        out.println("GET http://192.168.6.50/");
+/*
         line2 = in2.readLine();
         System.out.println("受信: " + line2);
         out2.println(line2);
         System.out.println("送信: " + line2);
+*/ 
+        char[] aaa = new char[65535];
+        while(in.ready() == false){
+            //String line = in.readLine();
+            in.read(aaa,0,65535);
+            System.out.println(aaa);
+            in.read(aaa);
+            System.out.println(aaa);
+        }
 
-        String line = in.readLine();
-        System.out.println(line);
+
         socket.close();
         serverSocket.close();
     }
