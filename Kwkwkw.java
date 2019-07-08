@@ -150,7 +150,6 @@ class myListener2 implements ActionListener{
     public void actionPerformed(ActionEvent e) {
       /* ボタン1の処理したい内容をここに記述する */
       System.out.println("abc=");
-      JTextArea area1 =new JTextArea();
       Globalaa test3 = new Globalaa();
       try {
         Settei setteistr = new Settei(test3.area3);
