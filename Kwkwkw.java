@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.File;
 import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
@@ -21,6 +22,8 @@ import java.util.ResourceBundle;
 import java.util.Properties;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
 
 class Globalaa{
     static JTextArea area3;
@@ -80,12 +83,34 @@ class Settei{
         File file = new File("Kwkwkw.ini");
         if(file.exists()){
             if(file.isFile()){
+                BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), "Shift_JIS"));
+                String str;
+                while((str = br.readLine()) != null){
+                  System.out.println(str);
+                  String[] fruits = str.split("=");
+                  switch(fruits[0]){
+                  case "abc":
+                    System.out.println(fruits[1]);
+                  break;
+                  case "cba":
+                  System.out.println(fruits[1]);
+                  break;
+                  default:
+                  }
+                }
+              
+                br.close();
+        /*
         Properties properties = new Properties();
         //プロパティファイルのパスを指定する
-        InputStream istream = new FileInputStream(file);
+        // ファイルからバイトストリームを作る
+        InputStream fileStream2 = new FileInputStream(file);
+        // 文字列ストリームを作る。文字列エンコードの指定
+        InputStreamReader istream = new InputStreamReader(fileStream2,"utf-8");
         properties.load(istream);
         System.out.println(properties.getProperty("abc"));
         System.out.println(properties.getProperty("cba"));
+        */
             }else{
                 System.out.println("設定ファイルがディレクトリなんで、終了するよ！");
                 System.exit(0);
@@ -149,7 +174,7 @@ class myListener extends WindowAdapter{
 class myListener2 implements ActionListener{
     public void actionPerformed(ActionEvent e) {
       /* ボタン1の処理したい内容をここに記述する */
-      System.out.println("abc=");
+      System.out.println("ボタンスタート");
       Globalaa test3 = new Globalaa();
       try {
         Settei setteistr = new Settei(test3.area3);
