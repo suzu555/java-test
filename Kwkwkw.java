@@ -1,31 +1,15 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.File;
-import java.io.OutputStreamWriter;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import java.util.ResourceBundle;
-import java.util.Properties;
 import java.io.FileInputStream;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.net.Socket;
-import java.net.InetAddress;
 import java.net.ServerSocket;
 
 class Globalaa{
@@ -36,7 +20,7 @@ class Globalaa{
     }
 }
 public class Kwkwkw {
-    public static void main( String[] args) throws IOException {
+    public static void main( String[] args) throws IOException,InterruptedException  {
         SwingTest test2 = new SwingTest("SwingTest");
         test2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         test2.setVisible(true);
@@ -66,7 +50,7 @@ public class Kwkwkw {
         String line2;
         */
         //input = keyIn.readLine();
-        out.println("GET http://192.168.6.50/");
+        out.println("GET /");
 /*
         line2 = in2.readLine();
         System.out.println("受信: " + line2);
@@ -74,14 +58,12 @@ public class Kwkwkw {
         System.out.println("送信: " + line2);
 */ 
         char[] aaa = new char[65535];
-        while(in.ready() == false){
-            //String line = in.readLine();
-            in.read(aaa,0,65535);
-            System.out.println(aaa);
+        while(in.ready()){
+                Thread.sleep(5000);
+        }
+            System.out.println("一回目からtrue");
             in.read(aaa);
             System.out.println(aaa);
-        }
-
 
         socket.close();
         serverSocket.close();
