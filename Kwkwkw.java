@@ -37,53 +37,11 @@ class Globalaa{
     }
 }
 public class Kwkwkw {
-    public static void main( String[] args) throws IOException,InterruptedException  {
+    public static void main( String[] args) throws IOException,InterruptedException {
         SwingTest test2 = new SwingTest("SwingTest");
         test2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         test2.setVisible(true);
-        //サーバー
-        ServerSocket serverSocket = null;
-        Socket socket2 = null;
-        serverSocket = new ServerSocket(8800);
-        System.out.println("EchoServerが起動しました(port="+ serverSocket.getLocalPort() + ")");
-
-
-        //クライアント
-        Socket socket = null;
-        //socket = new Socket("localhost", 8800);
-        socket = new Socket("192.168.6.50", 80);
-        System.out.println("接続しました"+ socket.getRemoteSocketAddress());
-        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-        BufferedReader keyIn = new BufferedReader(new InputStreamReader(System.in));
-        String input;
-        
-        //サーバー
-        /*
-        socket2 = serverSocket.accept();
-        System.out.println("接続されました "+ socket2.getRemoteSocketAddress() );
-        BufferedReader in2 = new BufferedReader(new InputStreamReader(socket2.getInputStream()));
-        PrintWriter out2 = new PrintWriter(socket2.getOutputStream(), true);
-        String line2;
-        */
-        //input = keyIn.readLine();
-        out.println("GET /");
-/*
-        line2 = in2.readLine();
-        System.out.println("受信: " + line2);
-        out2.println(line2);
-        System.out.println("送信: " + line2);
-*/ 
-        char[] aaa = new char[65535];
-        while(in.ready()){
-                Thread.sleep(5000);
-        }
-            System.out.println("一回目からtrue");
-            in.read(aaa);
-            System.out.println(aaa);
-
-        socket.close();
-        serverSocket.close();
+        nettest test1 = new nettest();
     }
 }
 
@@ -224,5 +182,53 @@ class myListener3 implements ActionListener{
         /* ボタン2の処理したい内容をここに記述する */
         System.out.println("終了するよ！");
         System.exit(0);
+    }
+}
+
+class nettest {
+    public nettest()throws IOException,InterruptedException{
+        //サーバー
+        ServerSocket serverSocket = null;
+        Socket socket2 = null;
+        serverSocket = new ServerSocket(8800);
+        System.out.println("EchoServerが起動しました(port="+ serverSocket.getLocalPort() + ")");
+
+
+        //クライアント
+        Socket socket = null;
+        //socket = new Socket("localhost", 8800);
+        socket = new Socket("192.168.6.50", 80);
+        System.out.println("接続しました"+ socket.getRemoteSocketAddress());
+        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+        BufferedReader keyIn = new BufferedReader(new InputStreamReader(System.in));
+        String input;
+        
+        //サーバー
+        /*
+        socket2 = serverSocket.accept();
+        System.out.println("接続されました "+ socket2.getRemoteSocketAddress() );
+        BufferedReader in2 = new BufferedReader(new InputStreamReader(socket2.getInputStream()));
+        PrintWriter out2 = new PrintWriter(socket2.getOutputStream(), true);
+        String line2;
+        */
+        //input = keyIn.readLine();
+        out.println("GET /");
+/*
+        line2 = in2.readLine();
+        System.out.println("受信: " + line2);
+        out2.println(line2);
+        System.out.println("送信: " + line2);
+*/ 
+        char[] aaa = new char[65535];
+        while(in.ready() == false){
+                Thread.sleep(100);
+        }
+            System.out.println("一回目からtrue");
+            in.read(aaa);
+            System.out.println(aaa);
+
+        socket.close();
+        serverSocket.close();
     }
 }
