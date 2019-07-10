@@ -25,9 +25,9 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.net.Socket;
-//import java.net.InetAddress;
 import java.net.ServerSocket;
-
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 class Globalaa{
     static JTextArea area3;
@@ -197,6 +197,16 @@ class nettest {
         //クライアント
         Socket socket = null;
         //socket = new Socket("localhost", 8800);
+        InetAddress ia = null;
+        try {
+            ia = InetAddress.getByName("www.ne--yo.co.jp");
+          } catch ( UnknownHostException c) {
+            System.out.println("ゲットホストで存在しないと為ったね。" + c);
+          }
+        if(ia != null){
+            String ip = ia.getHostAddress();       //IPアドレス
+            String hostname = ia.getHostName();    //ホスト名
+        }
         socket = new Socket("192.168.6.50", 80);
         System.out.println("接続しました"+ socket.getRemoteSocketAddress());
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -220,15 +230,14 @@ class nettest {
         out2.println(line2);
         System.out.println("送信: " + line2);
 */ 
-        char[] aaa = new char[65535];
+        //char[] aaa = new char[65535];
         String aaa3;
         while(in.ready() == false){
-                Thread.sleep(100);
+                Thread.sleep(1000);
         }
             System.out.println("一回目からtrue");
 
         while((aaa3 = in.readLine()) != null){
-            aaa3 = in.readLine();
             System.out.println(aaa3);
         }
             //in.read(aaa);
