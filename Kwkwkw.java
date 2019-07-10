@@ -221,12 +221,18 @@ class nettest {
         System.out.println("送信: " + line2);
 */ 
         char[] aaa = new char[65535];
+        String aaa3;
         while(in.ready() == false){
                 Thread.sleep(100);
         }
             System.out.println("一回目からtrue");
-            in.read(aaa);
-            System.out.println(aaa);
+
+        while((aaa3 = in.readLine()) != null){
+            aaa3 = in.readLine();
+            System.out.println(aaa3);
+        }
+            //in.read(aaa);
+            //System.out.println(aaa);
 
         socket.close();
         serverSocket.close();
